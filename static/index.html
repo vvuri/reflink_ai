@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Upload a photo to see its format, dimensions, camera EXIF metadata and GPS location. Images are processed in memory and never stored.">
+  <title>RefLink — image inspector</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='86'%3E%F0%9F%94%8D%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">reflink</a>
+    <span class="tagline">image inspector</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>What&rsquo;s inside your photo?</h1>
+      <p class="sub">
+        Format, dimensions, camera metadata from EXIF and GPS coordinates if present.
+        Files are analyzed in memory and never stored.
+      </p>
+    </section>
+
+    <div id="dropzone" class="dropzone" role="button" tabindex="0"
+         aria-label="Choose an image file to analyze, or drop it here">
+      <input id="fileInput" type="file" hidden
+             accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,.jpg,.jpeg,.png,.webp,.gif,.bmp">
+      <div class="dz-icon" aria-hidden="true">
+        <svg width="54" height="54" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 15V3"/>
+          <path d="m7 8 5-5 5 5"/>
+          <path d="M4 15v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-3"/>
+        </svg>
+      </div>
+      <p class="dz-title" id="dzTitle">Drop an image here</p>
+      <p class="dz-or">or</p>
+      <button type="button" class="btn" id="pickBtn">Choose file</button>
+      <p class="dz-hint" id="dzHint">JPEG &middot; PNG &middot; WebP &middot; GIF &middot; BMP &mdash; up to 20&nbsp;MB</p>
+    </div>
+
+    <div id="message" class="message hidden" role="alert"></div>
+
+    <section id="busy" class="busy hidden" aria-live="polite">
+      <span class="spinner" aria-hidden="true"></span>
+      <span>Analyzing <b id="busyName"></b>&hellip;</span>
+    </section>
+
+    <section id="preview" class="preview hidden">
+      <img id="previewImg" alt="">
+      <p id="previewCap" class="preview-cap"></p>
+    </section>
+
+    <section id="results" class="results hidden" aria-live="polite"></section>
+  </main>
+
+  <footer class="foot">
+    <span>RefLink MVP</span>
+    <span>Images are processed in memory and never stored; upload facts are kept in the server log.</span>
+  </footer>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>

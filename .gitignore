@@ -1,0 +1,12 @@
+# build artifacts
+/reflink
+/reflink.exe
+/build/
+/dist/
+/reflink-*
+
+# uploaded facts log (created at runtime)
+*.log
+
+# Go
+*.test
